@@ -35,3 +35,37 @@ section[id] {
     scroll-behavior: smooth;
   }
 }
+
+/* Toques sem atraso de duplo toque */
+a,
+button {
+  touch-action: manipulation;
+}
+
+/* Revelação ao rolar: só abaixo da dobra, uma vez, e só com JS e sem movimento reduzido */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal]:not([data-revealed]) {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  .js [data-reveal] {
+    transition:
+      opacity 400ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+      transform 400ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+  }
+}
+
+/* Transição home → case: a miniatura vira a capa */
+::view-transition-group(.capa) {
+  animation-duration: 350ms;
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}

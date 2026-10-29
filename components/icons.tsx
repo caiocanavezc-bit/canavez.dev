@@ -2,7 +2,14 @@
 type IconProps = { className?: string };
 
 const base = (path: string, className?: string) => (
-  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true" className={className}>
+  <svg
+    viewBox="0 0 24 24"
+    width="24"
+    height="24"
+    fill="currentColor"
+    aria-hidden="true"
+    className={className}
+  >
     <path d={path} />
   </svg>
 );

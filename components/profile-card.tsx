@@ -12,7 +12,10 @@ const iconeRede =
 export function ProfileCard({ perfil }: { perfil: Perfil }) {
   const { contato } = perfil;
   return (
-    <div data-testid="profile-card" className="overflow-hidden rounded-2xl border border-border bg-bg">
+    <div
+      data-testid="profile-card"
+      className="overflow-hidden rounded-2xl border border-border bg-bg"
+    >
       <div aria-hidden="true" className="h-24 bg-[#333639]" />
       <div className="px-5 pb-5">
         <div className="-mt-12 flex items-end justify-between gap-3">
@@ -42,7 +45,9 @@ export function ProfileCard({ perfil }: { perfil: Perfil }) {
           )}
         </div>
 
-        <p className="mt-3 text-xl font-bold leading-tight text-text">{perfil.nome}</p>
+        <p className="mt-3 text-xl font-bold leading-tight text-text">
+          {perfil.nome}
+        </p>
         <p className="text-[15px] text-muted">{perfil.handle}</p>
         <p className="mt-3 text-[15px] leading-[1.5] text-text">{perfil.bio}</p>
 
@@ -55,11 +60,17 @@ export function ProfileCard({ perfil }: { perfil: Perfil }) {
           {perfil.agora.map((item, i) => {
             const Icone = ICONES_AGORA[item.icon];
             return (
-              <li key={item.texto} className="flex items-start gap-2.5 text-[14px] leading-[1.45] text-text">
+              <li
+                key={item.texto}
+                className="flex items-start gap-2.5 text-[14px] leading-[1.45] text-text"
+              >
                 <span className="relative mt-0.5 shrink-0">
                   <Icone aria-hidden="true" className="size-4 text-muted" />
                   {i === 0 && (
-                    <span aria-hidden="true" className="absolute -top-0.5 -right-0.5 size-1.5 rounded-full bg-[#00BA7C]" />
+                    <span
+                      aria-hidden="true"
+                      className="absolute -top-0.5 -right-0.5 size-1.5 rounded-full bg-[#00BA7C]"
+                    />
                   )}
                 </span>
                 {item.texto}

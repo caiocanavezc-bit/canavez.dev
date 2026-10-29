@@ -1,6 +1,13 @@
 "use client";
 
-import { ArrowLeft, Briefcase, FolderOpen, Home, type LucideIcon, Send } from "lucide-react";
+import {
+  ArrowLeft,
+  Briefcase,
+  FolderOpen,
+  Home,
+  type LucideIcon,
+  Send,
+} from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -15,8 +22,22 @@ function itens(variant: "home" | "case", hasProjects: boolean): Item[] {
   }
   return [
     { href: "#inicio", label: "Início", icon: Home, secao: "inicio" },
-    { href: "#servicos", label: "Serviços", icon: Briefcase, secao: "servicos" },
-    ...(hasProjects ? [{ href: "#projetos", label: "Projetos", icon: FolderOpen, secao: "projetos" }] : []),
+    {
+      href: "#servicos",
+      label: "Serviços",
+      icon: Briefcase,
+      secao: "servicos",
+    },
+    ...(hasProjects
+      ? [
+          {
+            href: "#projetos",
+            label: "Projetos",
+            icon: FolderOpen,
+            secao: "projetos",
+          },
+        ]
+      : []),
     { href: "#contato", label: "Contato", icon: Send, secao: "contato" },
   ];
 }
@@ -36,7 +57,9 @@ function useSecaoAtiva(ids: string[]) {
     // Uma única regra para os dois gatilhos: no fim da página vence a última seção;
     // senão, a última seção (na ordem da página) que cruza a faixa central.
     const atualizar = () => {
-      const fim = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      const fim =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 2;
       if (fim) return setAtiva(alvos[alvos.length - 1].id);
       const atual = alvos.findLast((el) => naFaixa.has(el.id));
       if (atual) setAtiva(atual.id);
@@ -62,7 +85,13 @@ function useSecaoAtiva(ids: string[]) {
   return ativa;
 }
 
-export function Dock({ variant, hasProjects = true }: { variant: "home" | "case"; hasProjects?: boolean }) {
+export function Dock({
+  variant,
+  hasProjects = true,
+}: {
+  variant: "home" | "case";
+  hasProjects?: boolean;
+}) {
   const lista = itens(variant, hasProjects);
   const ativa = useSecaoAtiva(lista.flatMap((i) => (i.secao ? [i.secao] : [])));
 
@@ -85,7 +114,11 @@ export function Dock({ variant, hasProjects = true }: { variant: "home" | "case"
                   atual ? "text-text" : "text-muted"
                 }`}
               >
-                <Icone aria-hidden="true" className="size-5" strokeWidth={1.75} />
+                <Icone
+                  aria-hidden="true"
+                  className="size-5"
+                  strokeWidth={1.75}
+                />
               </Link>
             </li>
           );

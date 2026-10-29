@@ -3,7 +3,11 @@ import { SectionTitle } from "@/components/section-title";
 
 export default function NotFound() {
   return (
-    <main id="conteudo" tabIndex={-1} className="@container mx-auto max-w-[680px] px-4 pt-32 pb-24 outline-none">
+    <main
+      id="conteudo"
+      tabIndex={-1}
+      className="@container mx-auto max-w-[680px] px-4 pt-32 pb-24 outline-none"
+    >
       <SectionTitle as="h1" linhas={["Página não", "encontrada"]} />
       <p className="mt-6 max-w-[62ch] text-[17px] leading-[1.6] text-muted">
         O endereço pode ter mudado ou estar digitado errado.

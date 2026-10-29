@@ -15,7 +15,9 @@ export function CaseHeader({ meta }: { meta: ProjectMeta }) {
       <h1 className="mt-6 text-[clamp(36px,9cqi,64px)] font-bold leading-[0.95] tracking-[-0.03em] text-text">
         {meta.title}
       </h1>
-      <p className="mt-4 max-w-[62ch] text-[19px] leading-[1.5] text-muted">{meta.subtitle}</p>
+      <p className="mt-4 max-w-[62ch] text-[19px] leading-[1.5] text-muted">
+        {meta.subtitle}
+      </p>
       <p className="mt-5 text-[15px] text-muted">
         <span className="font-mono">{meta.year}</span>
         <span className="mx-2 text-border" aria-hidden="true">
@@ -25,7 +27,10 @@ export function CaseHeader({ meta }: { meta: ProjectMeta }) {
       </p>
       <ul className="mt-5 flex flex-wrap gap-2" aria-label="Tecnologias">
         {meta.stack.map((t) => (
-          <li key={t} className="rounded-full border border-border px-3 py-1 font-mono text-[13px] text-text">
+          <li
+            key={t}
+            className="rounded-full border border-border px-3 py-1 font-mono text-[13px] text-text"
+          >
             {t}
           </li>
         ))}

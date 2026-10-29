@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ViewTransition } from "react";
 import { CaseGallery } from "@/components/case-gallery";
 import { CaseHeader } from "@/components/case-header";
 import { Dock } from "@/components/dock";
@@ -42,15 +43,17 @@ export default async function CasePage({
       >
         <CaseHeader meta={meta} />
 
-        <Image
-          src={meta.cover}
-          alt={`Tela principal do projeto ${meta.title}`}
-          width={1600}
-          height={1000}
-          priority
-          sizes="(min-width: 800px) 760px, 100vw"
-          className="mt-10 h-auto w-full rounded-2xl border border-border"
-        />
+        <ViewTransition name={`capa-${meta.slug}`} share="capa" default="none">
+          <Image
+            src={meta.cover}
+            alt={`Tela principal do projeto ${meta.title}`}
+            width={1600}
+            height={1000}
+            priority
+            sizes="(min-width: 800px) 760px, 100vw"
+            className="mt-10 h-auto w-full rounded-2xl border border-border"
+          />
+        </ViewTransition>
 
         <article className="mt-6">
           <Content />

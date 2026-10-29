@@ -25,7 +25,10 @@ export function ContactLinks({ contato }: { contato: Perfil["contato"] }) {
       )}
       {contato.email && (
         <li>
-          <a href={mailtoUrl(contato.email, contato.assuntoEmail)} className={contorno}>
+          <a
+            href={mailtoUrl(contato.email, contato.assuntoEmail)}
+            className={contorno}
+          >
             <Mail aria-hidden="true" className="size-[18px]" />
             E-mail
           </a>
@@ -33,7 +36,12 @@ export function ContactLinks({ contato }: { contato: Perfil["contato"] }) {
       )}
       {contato.linkedin && (
         <li>
-          <a href={contato.linkedin} target="_blank" rel="noopener noreferrer" className={contorno}>
+          <a
+            href={contato.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={contorno}
+          >
             <LinkedinIcon className="size-[18px]" />
             LinkedIn
           </a>
@@ -41,7 +49,12 @@ export function ContactLinks({ contato }: { contato: Perfil["contato"] }) {
       )}
       {contato.github && (
         <li>
-          <a href={contato.github} target="_blank" rel="noopener noreferrer" className={contorno}>
+          <a
+            href={contato.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={contorno}
+          >
             <GithubIcon className="size-[18px]" />
             GitHub
           </a>

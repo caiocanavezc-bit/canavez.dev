@@ -37,6 +37,8 @@ test("links de contato", async ({ page }) => {
 });
 
 test("métricas", async ({ page }) => {
+  // No celular as métricas ficam abaixo da dobra e só contam até o valor final ao entrar na tela.
+  await page.getByText("sistemas entregues").scrollIntoViewIfNeeded();
   await expect(page.getByText("+10", { exact: true })).toBeVisible();
   await expect(page.getByText("1 ano", { exact: true })).toBeVisible();
 });

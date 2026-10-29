@@ -22,16 +22,23 @@ const metas = validateProjects(
   path.join(process.cwd(), "public"),
 );
 
-const publicados = metas.filter((m) => m.published).sort((a, b) => a.order - b.order);
+const publicados = metas
+  .filter((m) => m.published)
+  .sort((a, b) => a.order - b.order);
 
 export function getProjects(): ProjectMeta[] {
   return publicados;
 }
 
-export function getProject(slug: string): { meta: ProjectMeta; Content: ComponentType } | null {
+export function getProject(
+  slug: string,
+): { meta: ProjectMeta; Content: ComponentType } | null {
   const meta = publicados.find((m) => m.slug === slug);
   if (!meta) return null;
-  return { meta, Content: registro.find((r) => r.fileSlug === slug)!.mod.default };
+  return {
+    meta,
+    Content: registro.find((r) => r.fileSlug === slug)!.mod.default,
+  };
 }
 
 export function getAdjacentProject(slug: string): ProjectMeta {

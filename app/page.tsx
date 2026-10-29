@@ -26,7 +26,7 @@ export default function Home() {
         >
           <Hero perfil={perfil} />
 
-          <section id="servicos" aria-labelledby="titulo-servicos">
+          <section id="servicos" aria-labelledby="titulo-servicos" data-reveal>
             <SectionTitle id="titulo-servicos" linhas={["O que", "eu faço"]} />
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {perfil.servicos.map((s) => (
@@ -37,17 +37,19 @@ export default function Home() {
 
           {projetos.length > 0 && (
             <section id="projetos" aria-labelledby="titulo-projetos">
-              <SectionTitle
-                id="titulo-projetos"
-                linhas={["Projetos", "recentes"]}
-              />
+              <div data-reveal>
+                <SectionTitle
+                  id="titulo-projetos"
+                  linhas={["Projetos", "recentes"]}
+                />
+              </div>
               <div className="mt-10">
                 <ProjectList projects={projetos} />
               </div>
             </section>
           )}
 
-          <section id="contato" aria-labelledby="titulo-contato">
+          <section id="contato" aria-labelledby="titulo-contato" data-reveal>
             <SectionTitle id="titulo-contato" linhas={["Vamos", "conversar"]} />
             <p className="mt-6 max-w-[62ch] text-[17px] leading-[1.6] text-muted">
               Tem um sistema ou site em mente? Me chama no WhatsApp ou por
