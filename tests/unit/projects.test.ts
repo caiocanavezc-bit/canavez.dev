@@ -1,9 +1,17 @@
 import fs from "node:fs";
 import { expect, test } from "vitest";
-import { getAdjacentProject, getProject, getProjects, registeredSlugs } from "@/lib/projects";
+import {
+  getAdjacentProject,
+  getProject,
+  getProjects,
+  registeredSlugs,
+} from "@/lib/projects";
 
 test("cases publicados em ordem", () => {
-  expect(getProjects().map((p) => p.slug)).toEqual(["aeb-transporte", "bc-consultoria"]);
+  expect(getProjects().map((p) => p.slug)).toEqual([
+    "aeb-transporte",
+    "bc-consultoria",
+  ]);
 });
 
 test("slug inexistente devolve null", () => {

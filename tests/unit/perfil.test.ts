@@ -2,7 +2,8 @@ import { expect, test } from "vitest";
 import { perfil } from "@/content/perfil";
 
 test("toda métrica informa a fonte", () => {
-  for (const m of perfil.metricas) expect(m.fonte.trim().length).toBeGreaterThan(0);
+  for (const m of perfil.metricas)
+    expect(m.fonte.trim().length).toBeGreaterThan(0);
 });
 
 test("bio cabe no cartão", () => {
@@ -14,7 +15,10 @@ test("título do hero em duas linhas", () => {
 });
 
 test("cada serviço aponta para o case de exemplo", () => {
-  expect(perfil.servicos.map((s) => s.exemploSlug)).toEqual(["aeb-transporte", "bc-consultoria"]);
+  expect(perfil.servicos.map((s) => s.exemploSlug)).toEqual([
+    "aeb-transporte",
+    "bc-consultoria",
+  ]);
 });
 
 test("contatos aprovados", () => {

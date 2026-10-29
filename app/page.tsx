@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import { ContactLinks } from "@/components/contact-links";
 import { Dock } from "@/components/dock";
 import { Hero } from "@/components/hero";
+import { PersonJsonLd } from "@/components/person-jsonld";
 import { ProfileCard } from "@/components/profile-card";
 import { ProjectList } from "@/components/project-list";
 import { SectionTitle } from "@/components/section-title";
@@ -8,11 +10,14 @@ import { ServiceCard } from "@/components/service-card";
 import { perfil } from "@/content/perfil";
 import { getProjects } from "@/lib/projects";
 
+export const metadata: Metadata = { alternates: { canonical: "/" } };
+
 export default function Home() {
   const projetos = getProjects();
 
   return (
     <>
+      <PersonJsonLd perfil={perfil} />
       <Dock variant="home" hasProjects={projetos.length > 0} />
       <div className="mx-auto max-w-[1120px] px-4 pt-24 pb-24 lg:grid lg:grid-cols-[340px_minmax(0,680px)] lg:justify-center lg:gap-16">
         <aside className="lg:sticky lg:top-24 lg:self-start">

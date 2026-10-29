@@ -21,6 +21,7 @@ export async function generateMetadata({
   return {
     title: `${projeto.meta.title} · Caio Canavez`,
     description: projeto.meta.subtitle,
+    alternates: { canonical: `/projetos/${slug}` },
   };
 }
 

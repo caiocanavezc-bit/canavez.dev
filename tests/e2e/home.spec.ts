@@ -1,7 +1,11 @@
 import { expect, type Page, test } from "@playwright/test";
 
 const semRolagemHorizontal = (page: Page) =>
-  page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth);
+  page.evaluate(
+    () =>
+      document.documentElement.scrollWidth <=
+      document.documentElement.clientWidth,
+  );
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
@@ -15,7 +19,9 @@ test("hero com título em duas linhas", async ({ page }) => {
 
 test("cartão de perfil com nome e ocupação atual", async ({ page }) => {
   await expect(page.getByText("Caio Canavez").first()).toBeVisible();
-  await expect(page.getByText("Estagiário de TI · Prefeitura de Batatais")).toBeVisible();
+  await expect(
+    page.getByText("Estagiário de TI · Prefeitura de Batatais"),
+  ).toBeVisible();
 });
 
 test("seção de serviços", async ({ page }) => {

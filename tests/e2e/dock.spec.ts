@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
-const dock = (page: import("@playwright/test").Page) => page.getByRole("navigation", { name: "Navegação principal" });
+const dock = (page: import("@playwright/test").Page) =>
+  page.getByRole("navigation", { name: "Navegação principal" });
 
 test("dock leva à seção de projetos", async ({ page }) => {
   await page.goto("/");
@@ -12,7 +13,9 @@ test("dock leva à seção de projetos", async ({ page }) => {
 test("item da seção visível fica marcado", async ({ page }) => {
   await page.goto("/");
   await page.locator("#contato").scrollIntoViewIfNeeded();
-  await expect(dock(page).getByRole("link", { name: "Contato" })).toHaveAttribute("aria-current", "true");
+  await expect(
+    dock(page).getByRole("link", { name: "Contato" }),
+  ).toHaveAttribute("aria-current", "true");
 });
 
 test("no case, Contato leva ao contato da home", async ({ page }) => {
