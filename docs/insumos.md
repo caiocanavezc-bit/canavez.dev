@@ -27,9 +27,13 @@ Dados fornecidos pelo Caio para o conteúdo do site. Os arquivos brutos (fotos, 
 - Estagiário de TI · Prefeitura de Batatais
 - Engenharia de Computação · Unaerp · 2025–2030
 
+## Decisões do Caio (2026-10-29)
+
+- **Foto:** usar por enquanto a selfie do espelho, cortada do peito para cima e escurecida para o fundo preto. Trocar quando chegar uma foto com o rosto à mostra.
+- **AEB Transporte:** no ar desde outubro de 2026. Claude gera os prints rodando o sistema localmente com dados fictícios. Conteúdo do case vem do README do repositório `aeb-transporte`.
+- **BC Consultoria:** autorização do escritório confirmada pelo Caio, então o case sai com `published: true`. Conteúdo vem do repositório `bc_consultoria`. Não há URL pública conhecida: houve deploy no GitHub Pages em 2026-10-13, mas `caiocanavezc-bit.github.io/bc_consultoria/` responde 404, então o case sai sem `liveUrl` até o Caio informar um endereço.
+
 ## Pendentes
 
-- Foto com o rosto à mostra, ou OK para usar a selfie do espelho cortada e escurecida.
-- Respostas sobre o case AEB Transporte e autorização para gerar prints com dados fictícios.
-- Autorização, URL e contexto do case BC Consultoria.
+- URL pública do site da BC Consultoria, se houver.
 - Situação do domínio `canavez.dev`, conta na Vercel e permissão para criar o repositório público.
