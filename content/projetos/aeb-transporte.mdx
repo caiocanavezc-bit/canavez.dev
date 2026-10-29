@@ -1,0 +1,41 @@
+export const meta = {
+  slug: "aeb-transporte",
+  title: "AEB Transporte",
+  subtitle: "Chamada e embarque do ônibus universitário de Batatais",
+  year: 2026,
+  role: "Desenvolvimento full-stack",
+  kind: "sistema",
+  stack: ["Python", "FastAPI", "SQLite", "Turso", "JavaScript", "JWT"],
+  cover: "/projetos/aeb-transporte/capa.webp",
+  thumb: "/projetos/aeb-transporte/thumb.webp",
+  gallery: [
+    { src: "/projetos/aeb-transporte/chamada.webp", alt: "Controle de embarque com as paradas da rota abertas (dados fictícios)" },
+    { src: "/projetos/aeb-transporte/rotas.webp", alt: "Gerenciamento de rotas, faculdades, representantes e motoristas (dados fictícios)" },
+    { src: "/projetos/aeb-transporte/pdf.webp", alt: "Relatório de embarque em PDF agrupado por ponto (dados fictícios)" },
+    { src: "/projetos/aeb-transporte/celular.webp", alt: "Paradas e alunos na tela do celular do representante (dados fictícios)" },
+  ],
+  order: 1,
+  published: true,
+};
+
+## Problema
+
+A Associação dos Estudantes de Batatais leva universitários da cidade até as faculdades da região todos os dias, em mais de uma rota e em dois sentidos: ida e volta. Saber quem embarca em cada ponto, avisar o motorista e prestar contas no fim do dia dependia de listas soltas e de conferência manual.
+
+## Solução
+
+Um sistema web em que cada pessoa vê só o que precisa. O representante de cada ônibus faz a chamada ponto a ponto, o motorista acompanha a lista e gera o relatório, o aluno confirma a própria presença e o administrador cuida de rotas, faculdades e usuários.
+
+A chamada sincroniza sozinha a cada minuto entre os aparelhos e é zerada automaticamente às 15h (horário de Brasília), pronta para a viagem da noite. O relatório de embarque sai em PDF, agrupado por ponto, com o logo da associação e data e hora de emissão.
+
+## Destaques
+
+- **Quatro perfis de acesso** (administrador, representante, motorista e aluno), com permissões verificadas no servidor em cada rota da API.
+- **Reset diário às 15h** rodando em segundo plano, com registro de cada execução para nunca rodar duas vezes no mesmo dia.
+- **Relatório em PDF** gerado no servidor, separado por ponto e por sentido.
+- **Segurança e LGPD:** senhas com PBKDF2 em 600.000 iterações, sessões com JWT que expiram em 24h, consultas 100% parametrizadas e proteção contra XSS.
+- **Processo de engenharia:** toda mudança nasce de uma issue, vai para uma branch, passa por testes automatizados e auditoria de segurança no CI e só então entra em produção por pull request.
+
+## Resultado
+
+No ar desde outubro de 2026, hospedado no Render com banco Turso. As telas desta página foram geradas com dados fictícios para preservar a privacidade dos alunos.
