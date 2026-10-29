@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 import { RevealObserver } from "@/components/reveal-observer";
 import { SkipLink } from "@/components/skip-link";
 import { perfil } from "@/content/perfil";
 import { siteUrl } from "@/lib/site";
+import { geistMono, geistSans } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,7 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`${GeistSans.variable} ${GeistMono.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       suppressHydrationWarning
     >
       <head>

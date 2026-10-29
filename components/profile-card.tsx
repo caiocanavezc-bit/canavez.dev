@@ -56,7 +56,7 @@ export function ProfileCard({ perfil }: { perfil: Perfil }) {
           {perfil.cidade}
         </p>
 
-        <ul className="mt-4 space-y-2 border-t border-border pt-4">
+        <ul className="mt-4 space-y-2 border-t border-border pt-4 text-pretty">
           {perfil.agora.map((item, i) => {
             const Icone = ICONES_AGORA[item.icon];
             return (
