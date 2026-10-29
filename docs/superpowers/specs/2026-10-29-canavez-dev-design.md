@@ -58,8 +58,11 @@ Portfólio pessoal do Caio Canavez em `canavez.dev`, voltado a dois públicos ao
 | Bio curta (cartão) | uma frase, até 120 caracteres |
 | Parágrafo do hero | até 3 linhas, sobre sistemas web sob medida |
 | Cidade | Batatais, SP |
+| Linha "Agora" (cartão, abaixo da bio) | dois itens curtos: ocupação atual e formação (ícone + texto) |
 | Números | só valores verificáveis (ver regra abaixo) |
 | Redes | WhatsApp, e-mail, LinkedIn, GitHub (`caiocanavezc-bit`) |
+
+Os textos aprovados e os valores de cada campo estão em `docs/insumos.md`, que é a fonte para preencher `content/perfil.ts`.
 
 **Regra dos números:** nenhum número inventado. Cada métrica em `perfil.ts` tem um campo `fonte` (texto curto dizendo de onde vem). Enquanto o Caio não confirmar outros valores, o hero mostra apenas métricas contáveis no próprio site, como a quantidade de cases publicados.
 
