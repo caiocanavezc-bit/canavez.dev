@@ -1,6 +1,7 @@
 import { ContactLinks } from "@/components/contact-links";
 import { Hero } from "@/components/hero";
 import { ProfileCard } from "@/components/profile-card";
+import { ProjectList } from "@/components/project-list";
 import { SectionTitle } from "@/components/section-title";
 import { ServiceCard } from "@/components/service-card";
 import { perfil } from "@/content/perfil";
@@ -30,6 +31,9 @@ export default function Home() {
         {projetos.length > 0 && (
           <section id="projetos" aria-labelledby="titulo-projetos">
             <SectionTitle id="titulo-projetos" linhas={["Projetos", "recentes"]} />
+            <div className="mt-10">
+              <ProjectList projects={projetos} />
+            </div>
           </section>
         )}
 

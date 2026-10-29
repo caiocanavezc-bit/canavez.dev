@@ -23,3 +23,8 @@ test("todo MDX da pasta está registrado", () => {
     .sort();
   expect([...registeredSlugs].sort()).toEqual(arquivos);
 });
+
+test("lista de slugs do proxy acompanha os cases publicados", async () => {
+  const { PUBLISHED_SLUGS } = await import("@/lib/project-slugs");
+  expect([...PUBLISHED_SLUGS]).toEqual(getProjects().map((p) => p.slug));
+});

@@ -12,7 +12,7 @@ export type ProjectMeta = {
   liveUrl?: string;
   cover: string;
   thumb: string;
-  gallery: { src: string; alt: string }[];
+  gallery: { src: string; alt: string; width: number; height: number }[];
   order: number;
   published: boolean;
 };
@@ -38,9 +38,10 @@ export function validateProjects(entries: { fileSlug: string; meta: unknown }[],
     if (m.cover !== undefined) imagem(m.cover);
     if (m.thumb !== undefined) imagem(m.thumb);
     if (Array.isArray(m.gallery)) {
-      for (const item of m.gallery as { src?: unknown; alt?: unknown }[]) {
+      for (const item of m.gallery as { src?: unknown; alt?: unknown; width?: unknown; height?: unknown }[]) {
         imagem(item.src);
         if (typeof item.alt !== "string" || !item.alt.trim()) falha(`alt vazio na galeria: ${String(item.src)}`);
+        if (!(Number(item.width) > 0 && Number(item.height) > 0)) falha(`dimensões inválidas na galeria: ${String(item.src)}`);
       }
     }
     if (typeof m.order === "number") {

@@ -14,7 +14,7 @@ const base = {
   stack: ["Python"],
   cover: "/projetos/aeb-transporte/capa.webp",
   thumb: "/projetos/aeb-transporte/thumb.webp",
-  gallery: [{ src: "/projetos/aeb-transporte/chamada.webp", alt: "Chamada com dados fictícios" }],
+  gallery: [{ src: "/projetos/aeb-transporte/chamada.webp", alt: "Chamada com dados fictícios", width: 1440, height: 1400 }],
   order: 1,
   published: true,
 };
@@ -67,15 +67,22 @@ describe("validateProjects", () => {
   });
 
   test("imagem da galeria inexistente", () => {
-    const gallery = [{ src: "/projetos/x/falta.webp", alt: "x" }];
+    const gallery = [{ src: "/projetos/x/falta.webp", alt: "x", width: 10, height: 10 }];
     expect(erroDe(() => validateProjects(um({ ...base, gallery }), PUBLIC))).toContain(
       "imagem não encontrada: /projetos/x/falta.webp",
     );
   });
 
   test("alt vazio na galeria", () => {
-    const gallery = [{ src: "/projetos/aeb-transporte/chamada.webp", alt: "" }];
+    const gallery = [{ src: "/projetos/aeb-transporte/chamada.webp", alt: "", width: 10, height: 10 }];
     expect(erroDe(() => validateProjects(um({ ...base, gallery }), PUBLIC))).toContain("alt vazio");
+  });
+
+  test("galeria sem dimensões", () => {
+    const gallery = [{ src: "/projetos/aeb-transporte/chamada.webp", alt: "Chamada" }];
+    expect(erroDe(() => validateProjects(um({ ...base, gallery }), PUBLIC))).toContain(
+      "dimensões inválidas na galeria: /projetos/aeb-transporte/chamada.webp",
+    );
   });
 
   test("lista todos os problemas juntos", () => {
