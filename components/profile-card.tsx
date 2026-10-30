@@ -26,6 +26,7 @@ export function ProfileCard({ perfil }: { perfil: Perfil }) {
               width={96}
               height={96}
               priority
+              quality={90}
               className="size-24 rounded-full border-4 border-bg object-cover"
             />
           ) : (

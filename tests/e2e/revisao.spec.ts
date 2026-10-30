@@ -11,20 +11,26 @@ test("se o JavaScript do site não carregar, nada fica invisível", async ({
   await expect
     .poll(
       () =>
-        page.locator("#contato").evaluate((el) => getComputedStyle(el).opacity),
+        page
+          .locator("#contato [data-reveal]")
+          .evaluateAll((els) =>
+            els.map((el) => getComputedStyle(el).opacity).join(","),
+          ),
       { timeout: 6000 },
     )
-    .toBe("1");
+    .toBe("1,1,1");
   await page.locator("#servicos").scrollIntoViewIfNeeded();
   await expect
     .poll(
       () =>
         page
-          .locator("#servicos")
-          .evaluate((el) => getComputedStyle(el).opacity),
+          .locator("#servicos [data-reveal]")
+          .evaluateAll((els) =>
+            els.map((el) => getComputedStyle(el).opacity).join(","),
+          ),
       { timeout: 6000 },
     )
-    .toBe("1");
+    .toBe("1,1,1");
 });
 
 test("contagem não fica presa num número errado depois de voltar", async ({

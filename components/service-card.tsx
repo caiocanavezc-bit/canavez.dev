@@ -1,13 +1,25 @@
 import { ArrowRight, Globe, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import type { Servico } from "@/content/perfil";
 
 const ICONES = { "layout-dashboard": LayoutDashboard, globe: Globe };
 
-export function ServiceCard({ servico }: { servico: Servico }) {
+// atrasoMs: posição na cascata de revelação da seção.
+export function ServiceCard({
+  servico,
+  atrasoMs = 0,
+}: {
+  servico: Servico;
+  atrasoMs?: number;
+}) {
   const Icone = ICONES[servico.icon];
   return (
-    <article className="flex flex-col rounded-2xl border border-border p-6">
+    <article
+      data-reveal
+      style={{ "--reveal-delay": `${atrasoMs}ms` } as CSSProperties}
+      className="flex flex-col rounded-2xl border border-border p-6"
+    >
       <Icone
         aria-hidden="true"
         className="size-6 text-text"

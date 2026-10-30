@@ -9,7 +9,11 @@ import {
   Send,
 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { type MouseEvent, useEffect, useState } from "react";
+import { scrollSuave } from "@/lib/smooth-scroll";
+
+// Altura reservada para o dock fixo (mesmo valor do scroll-margin-top das seções).
+const DESCONTO_DOCK = 96;
 
 type Item = { href: string; label: string; icon: LucideIcon; secao?: string };
 
@@ -87,6 +91,20 @@ function useSecaoAtiva(ids: string[]) {
   return ativa;
 }
 
+// Âncoras da própria página descem suavemente; pelo teclado (detail 0) ou com movimento
+// reduzido, fica o salto nativo, que também leva o ponto de navegação por Tab até a seção.
+function descerSuave(evento: MouseEvent<HTMLAnchorElement>, href: string) {
+  if (!href.startsWith("#") || evento.detail === 0) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const alvo = document.querySelector<HTMLElement>(href);
+  if (!alvo) return;
+  evento.preventDefault();
+  history.replaceState(null, "", href);
+  scrollSuave(
+    alvo.getBoundingClientRect().top + window.scrollY - DESCONTO_DOCK,
+  );
+}
+
 export function Dock({
   variant,
   hasProjects = true,
@@ -109,6 +127,7 @@ export function Dock({
             <li key={href}>
               <Link
                 href={href}
+                onClick={(e) => descerSuave(e, href)}
                 aria-label={label}
                 aria-current={atual ? "true" : undefined}
                 title={label}
