@@ -40,6 +40,20 @@ test("links de contato", async ({ page }) => {
     "href",
     /^mailto:caiocanavezc@gmail\.com/,
   );
+  await expect(
+    contato.getByRole("link", { name: "Instagram" }),
+  ).toHaveAttribute("href", "https://www.instagram.com/canavezz/");
+});
+
+test("cartão de perfil tem o Instagram", async ({ page }) => {
+  const link = page
+    .getByTestId("profile-card")
+    .getByRole("link", { name: "Instagram de Caio Canavez" });
+  await expect(link).toHaveAttribute(
+    "href",
+    "https://www.instagram.com/canavezz/",
+  );
+  await expect(link).toHaveAttribute("target", "_blank");
 });
 
 test("métricas", async ({ page }) => {

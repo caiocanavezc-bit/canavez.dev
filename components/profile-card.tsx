@@ -2,7 +2,7 @@ import { Briefcase, GraduationCap, MapPin } from "lucide-react";
 import Image from "next/image";
 import type { Perfil } from "@/content/perfil";
 import { whatsappUrl } from "@/lib/links";
-import { GithubIcon, LinkedinIcon } from "./icons";
+import { GithubIcon, InstagramIcon, LinkedinIcon } from "./icons";
 
 const ICONES_AGORA = { briefcase: Briefcase, "graduation-cap": GraduationCap };
 const iconeRede =
@@ -84,7 +84,7 @@ export function ProfileCard({ perfil }: { perfil: Perfil }) {
           })}
         </ul>
 
-        {(contato.github || contato.linkedin) && (
+        {(contato.github || contato.linkedin || contato.instagram) && (
           <div className="mt-4 flex gap-2">
             {contato.github && (
               <a
@@ -106,6 +106,17 @@ export function ProfileCard({ perfil }: { perfil: Perfil }) {
                 className={iconeRede}
               >
                 <LinkedinIcon className="size-[18px]" />
+              </a>
+            )}
+            {contato.instagram && (
+              <a
+                href={contato.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram de Caio Canavez"
+                className={iconeRede}
+              >
+                <InstagramIcon className="size-[18px]" />
               </a>
             )}
           </div>

@@ -1,7 +1,7 @@
 import { Mail } from "lucide-react";
 import type { Perfil } from "@/content/perfil";
 import { mailtoUrl, whatsappUrl } from "@/lib/links";
-import { GithubIcon, LinkedinIcon, WhatsappIcon } from "./icons";
+import { GithubIcon, InstagramIcon, LinkedinIcon, WhatsappIcon } from "./icons";
 
 const pilula =
   "inline-flex min-h-11 items-center gap-2 rounded-full px-5 text-[15px] font-semibold motion-safe:transition motion-safe:active:scale-[0.97]";
@@ -57,6 +57,19 @@ export function ContactLinks({ contato }: { contato: Perfil["contato"] }) {
           >
             <GithubIcon className="size-[18px]" />
             GitHub
+          </a>
+        </li>
+      )}
+      {contato.instagram && (
+        <li>
+          <a
+            href={contato.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={contorno}
+          >
+            <InstagramIcon className="size-[18px]" />
+            Instagram
           </a>
         </li>
       )}

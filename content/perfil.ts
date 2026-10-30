@@ -21,6 +21,7 @@ export type Perfil = {
     email?: string;
     linkedin?: string;
     github?: string;
+    instagram?: string;
     mensagemWhatsapp: string;
     assuntoEmail: string;
   };
@@ -68,6 +69,7 @@ export const perfil: Perfil = {
     email: "caiocanavezc@gmail.com",
     linkedin: "https://www.linkedin.com/in/caio-canavez-b1427b427",
     github: "https://github.com/caiocanavezc-bit",
+    instagram: "https://www.instagram.com/canavezz/",
     mensagemWhatsapp: "Olá, Caio! Vi seu portfólio e quero conversar sobre um projeto.",
     assuntoEmail: "Contato pelo portfólio",
   },
