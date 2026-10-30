@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { ContactLinks } from "@/components/contact-links";
+import { Brilho } from "@/components/brilho";
 import { Dock } from "@/components/dock";
 import { Hero } from "@/components/hero";
 import { PersonJsonLd } from "@/components/person-jsonld";
@@ -20,6 +21,7 @@ export default function Home() {
     <>
       <PersonJsonLd perfil={perfil} />
       <Dock variant="home" hasProjects={projetos.length > 0} />
+      <Brilho />
       <div
         id="topo"
         className="mx-auto max-w-[1120px] px-4 pt-24 pb-24 lg:grid lg:grid-cols-[340px_minmax(0,680px)] lg:justify-center lg:gap-16"

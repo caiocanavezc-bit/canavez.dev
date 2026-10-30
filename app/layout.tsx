@@ -26,6 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: revealScript }} />
       </head>
       <body className="min-h-dvh">
+        <div aria-hidden="true" data-testid="grao" className="grao" />
         <SkipLink />
         {children}
       </body>

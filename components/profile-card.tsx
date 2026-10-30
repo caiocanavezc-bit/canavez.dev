@@ -16,7 +16,11 @@ export function ProfileCard({ perfil }: { perfil: Perfil }) {
       data-testid="profile-card"
       className="overflow-hidden rounded-2xl border border-border bg-bg"
     >
-      <div aria-hidden="true" className="h-24 bg-[#333639]" />
+      <div
+        aria-hidden="true"
+        data-testid="capa-perfil"
+        className="h-24 bg-[#202327] bg-[url(/perfil/capa.svg)] bg-cover bg-center"
+      />
       <div className="px-5 pb-5">
         <div className="-mt-12 flex items-end justify-between gap-3">
           {perfil.avatar ? (
