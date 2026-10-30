@@ -14,7 +14,9 @@ export function ProjectList({ projects }: { projects: ProjectMeta[] }) {
           key={p.slug}
           data-reveal
           style={
-            { "--reveal-delay": `${Math.min(i * 60, 300)}ms` } as CSSProperties
+            {
+              "--reveal-delay": `${(Math.min(i, 3) + 1) * 55}ms`,
+            } as CSSProperties
           }
         >
           <Link

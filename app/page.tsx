@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import { ContactLinks } from "@/components/contact-links";
 import { Dock } from "@/components/dock";
 import { Hero } from "@/components/hero";
@@ -34,11 +35,21 @@ export default function Home() {
         >
           <Hero perfil={perfil} />
 
-          <section id="servicos" aria-labelledby="titulo-servicos" data-reveal>
-            <SectionTitle id="titulo-servicos" linhas={["O que", "eu faço"]} />
+          {/* Cascata como no site da BC: título primeiro, cards a cada 85ms */}
+          <section id="servicos" aria-labelledby="titulo-servicos">
+            <div data-reveal>
+              <SectionTitle
+                id="titulo-servicos"
+                linhas={["O que", "eu faço"]}
+              />
+            </div>
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              {perfil.servicos.map((s) => (
-                <ServiceCard key={s.titulo} servico={s} />
+              {perfil.servicos.map((s, i) => (
+                <ServiceCard
+                  key={s.titulo}
+                  servico={s}
+                  atrasoMs={(i + 1) * 85}
+                />
               ))}
             </div>
           </section>
@@ -57,13 +68,26 @@ export default function Home() {
             </section>
           )}
 
-          <section id="contato" aria-labelledby="titulo-contato" data-reveal>
-            <SectionTitle id="titulo-contato" linhas={["Vamos", "conversar"]} />
-            <p className="mt-6 max-w-[62ch] text-[17px] leading-[1.6] text-muted">
+          <section id="contato" aria-labelledby="titulo-contato">
+            <div data-reveal>
+              <SectionTitle
+                id="titulo-contato"
+                linhas={["Vamos", "conversar"]}
+              />
+            </div>
+            <p
+              data-reveal
+              style={{ "--reveal-delay": "55ms" } as CSSProperties}
+              className="mt-6 max-w-[62ch] text-[17px] leading-[1.6] text-muted"
+            >
               Tem um sistema ou site em mente? Me chama no WhatsApp ou por
               e-mail.
             </p>
-            <div className="mt-8">
+            <div
+              data-reveal
+              style={{ "--reveal-delay": "110ms" } as CSSProperties}
+              className="mt-8"
+            >
               <ContactLinks contato={perfil.contato} />
             </div>
           </section>
