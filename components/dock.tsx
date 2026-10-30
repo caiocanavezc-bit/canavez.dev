@@ -91,11 +91,11 @@ function useSecaoAtiva(ids: string[]) {
   return ativa;
 }
 
-// Âncoras da própria página descem suavemente; pelo teclado (detail 0) ou com movimento
-// reduzido, fica o salto nativo, que também leva o ponto de navegação por Tab até a seção.
+// Âncoras da própria página descem suavemente ao clicar, como no site da BC — inclusive com
+// "reduzir movimento" ligado (pedido do Caio: no Windows sem efeitos de animação o menu pulava).
+// Pelo teclado (detail 0) fica o salto nativo, que também leva o ponto de navegação por Tab.
 function descerSuave(evento: MouseEvent<HTMLAnchorElement>, href: string) {
   if (!href.startsWith("#") || evento.detail === 0) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const alvo = document.querySelector<HTMLElement>(href);
   if (!alvo) return;
   evento.preventDefault();
