@@ -4,12 +4,12 @@ import { mailtoUrl, whatsappUrl } from "@/lib/links";
 import { GithubIcon, InstagramIcon, LinkedinIcon, WhatsappIcon } from "./icons";
 
 const pilula =
-  "inline-flex min-h-11 items-center gap-2 rounded-full px-5 text-[15px] font-semibold motion-safe:transition motion-safe:active:scale-[0.97]";
+  "inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-[15px] font-semibold motion-safe:transition motion-safe:active:scale-[0.97]";
 const contorno = `${pilula} border border-border text-text hover:bg-surface`;
 
 export function ContactLinks({ contato }: { contato: Perfil["contato"] }) {
   return (
-    <ul className="flex flex-wrap gap-3">
+    <ul className="flex flex-wrap gap-2.5">
       {contato.whatsapp && (
         <li>
           <a

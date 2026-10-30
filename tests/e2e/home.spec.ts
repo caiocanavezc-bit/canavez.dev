@@ -45,6 +45,16 @@ test("links de contato", async ({ page }) => {
   ).toHaveAttribute("href", "https://www.instagram.com/canavezz/");
 });
 
+test("no computador os botões de contato cabem numa linha", async ({
+  page,
+}, info) => {
+  test.skip(info.project.name === "mobile", "no celular eles quebram linha");
+  const topos = await page
+    .locator("#contato ul > li")
+    .evaluateAll((lis) => lis.map((li) => li.getBoundingClientRect().top));
+  expect(new Set(topos).size).toBe(1);
+});
+
 test("cartão de perfil tem o Instagram", async ({ page }) => {
   const link = page
     .getByTestId("profile-card")
