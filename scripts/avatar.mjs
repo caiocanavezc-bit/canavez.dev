@@ -2,18 +2,17 @@
 // Uso: node scripts/avatar.mjs
 import sharp from "sharp";
 
-const ORIGEM = "insumos/foto-espelho.png"; // 960×1280
-// Cabeça e tronco: com o corte até a cintura a pessoa ficava pequena no círculo de 96px.
-const RECORTE = { left: 290, top: 150, width: 420, height: 420 };
+const ORIGEM = "insumos/foto-perfil.png"; // 936×927, retrato já recortado em círculo (centro 462,452; raio 425)
+// Quadrado um pouco para dentro do círculo: a máscara redonda do site esconde os cantos
+// e a borda escura do print original não aparece.
+const RECORTE = { left: 52, top: 42, width: 820, height: 820 };
 
 await sharp(ORIGEM)
   .extract(RECORTE)
   .resize(512, 512, { kernel: "lanczos3" })
-  // Cores naturais com um pouco de contraste e nitidez (escurecer e dessaturar deixava a foto "lamacenta").
-  .modulate({ brightness: 1.02, saturation: 0.9 })
-  .linear(1.08, -8)
-  .sharpen({ sigma: 0.8 })
-  .webp({ quality: 90 })
+  // Foto de estúdio: cores mantidas, só uma nitidez leve para compensar a redução.
+  .sharpen({ sigma: 0.6 })
+  .webp({ quality: 92, smartSubsample: true })
   .toFile("public/perfil/avatar.webp");
 
 console.log("ok public/perfil/avatar.webp");
