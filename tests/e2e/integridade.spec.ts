@@ -10,6 +10,13 @@ async function rolarTudo(page: Page) {
     }
   });
   await page.waitForLoadState("networkidle");
+  // Imagens lazy disparadas na última rolagem podem ainda estar baixando em máquinas lentas (CI).
+  // Uma imagem quebrada também termina "complete" (com naturalWidth 0), então o teste segue pegando-a.
+  await page.waitForFunction(
+    () => [...document.images].every((i) => i.complete),
+    null,
+    { timeout: 15_000 },
+  );
 }
 
 for (const url of PAGINAS) {
