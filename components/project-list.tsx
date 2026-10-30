@@ -36,10 +36,10 @@ export function ProjectList({ projects }: { projects: ProjectMeta[] }) {
               <span className="block text-lg font-semibold text-text">
                 {p.title}
               </span>
-              <span className="mt-0.5 block text-[15px] leading-snug text-muted">
+              <span className="mt-0.5 block text-[15px] leading-snug text-muted group-hover:text-[#8B98A5]">
                 {p.subtitle}
               </span>
-              <span className="mt-1.5 block font-mono text-[13px] text-muted">
+              <span className="mt-1.5 block font-mono text-[13px] text-muted group-hover:text-[#8B98A5]">
                 {p.year}
               </span>
             </span>

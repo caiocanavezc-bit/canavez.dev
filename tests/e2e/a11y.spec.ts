@@ -1,7 +1,12 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-const PAGINAS = ["/", "/projetos/aeb-transporte", "/projetos/bc-consultoria", "/projetos/nao-existe"];
+const PAGINAS = [
+  "/",
+  "/projetos/aeb-transporte",
+  "/projetos/bc-consultoria",
+  "/projetos/nao-existe",
+];
 
 for (const url of PAGINAS) {
   test(`sem violações sérias de acessibilidade em ${url}`, async ({ page }) => {
@@ -14,10 +19,14 @@ for (const url of PAGINAS) {
       }
     });
     await page.waitForTimeout(600);
-    const { violations } = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();
+    const { violations } = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa"])
+      .analyze();
     const graves = violations
       .filter((v) => v.impact === "serious" || v.impact === "critical")
-      .map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(" ")).join(", ")}`);
+      .map(
+        (v) => `${v.id}: ${v.nodes.map((n) => n.target.join(" ")).join(", ")}`,
+      );
     expect(graves).toEqual([]);
   });
 }

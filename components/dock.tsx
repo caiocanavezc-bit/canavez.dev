@@ -21,7 +21,8 @@ function itens(variant: "home" | "case", hasProjects: boolean): Item[] {
     ];
   }
   return [
-    { href: "#inicio", label: "Início", icon: Home, secao: "inicio" },
+    // "#topo" volta ao início real da página (no celular o cartão fica acima do hero)
+    { href: "#topo", label: "Início", icon: Home, secao: "inicio" },
     {
       href: "#servicos",
       label: "Serviços",
@@ -42,8 +43,8 @@ function itens(variant: "home" | "case", hasProjects: boolean): Item[] {
   ];
 }
 
-// Marca a seção que ocupa a faixa central da tela; no fim da página, a última seção
-// (curta demais para chegar ao centro).
+// Marca a seção que ocupa a faixa central da tela; no topo, a primeira; no fim da página,
+// a última (curta demais para chegar ao centro).
 function useSecaoAtiva(ids: string[]) {
   const [ativa, setAtiva] = useState<string | null>(null);
   const chave = ids.join(",");
@@ -61,6 +62,7 @@ function useSecaoAtiva(ids: string[]) {
         window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight - 2;
       if (fim) return setAtiva(alvos[alvos.length - 1].id);
+      if (window.scrollY < 50) return setAtiva(alvos[0].id);
       const atual = alvos.findLast((el) => naFaixa.has(el.id));
       if (atual) setAtiva(atual.id);
     };

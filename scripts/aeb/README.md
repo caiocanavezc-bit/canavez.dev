@@ -4,7 +4,7 @@ Os prints do case saem de uma **cópia local** do AEB rodando com um banco SQLit
 
 ## Por que a cópia exportada
 
-O `database.py` do AEB lê `TURSO_DATABASE_URL` e `TURSO_AUTH_TOKEN` do arquivo `.env` quando as variáveis não estão no ambiente. Rodar a partir do repositório original poderia escrever no banco de produção. O `git archive` exporta só arquivos versionados, então a cópia nunca tem `.env`. O `seed_ficticio.py` ainda aborta se encontrar um `.env`, uma variável `TURSO_*` ou um banco fora da pasta temporária.
+O `database.py` do AEB lê `TURSO_DATABASE_URL` e `TURSO_AUTH_TOKEN` do arquivo `.env` quando as variáveis não estão no ambiente. Rodar a partir do repositório original poderia escrever no banco de produção. O `git archive` exporta só arquivos versionados, então a cópia nunca tem `.env`. O `seed_ficticio.py` ainda aborta se encontrar um `.env`, uma variável `TURSO_*`, um `SENTRY_DSN` (eventos iriam para o Sentry de produção) ou um banco fora da pasta temporária.
 
 ## Passo a passo (Git Bash, Windows)
 
@@ -21,7 +21,7 @@ export ENVIRONMENT=development
 export SQLITE_DB_PATH="$(cygpath -w "$T")\aeb.db"
 export ADMIN_PASSWORD="Demo-Portfolio-2026!"
 export JWT_SECRET="jwt-local-capturas-portfolio-0123456789abcdef"
-unset TURSO_DATABASE_URL TURSO_AUTH_TOKEN
+unset TURSO_DATABASE_URL TURSO_AUTH_TOKEN SENTRY_DSN
 
 .venv/Scripts/python /d/canavez.dev/scripts/aeb/seed_ficticio.py   # popula o banco temporário
 .venv/Scripts/python -m uvicorn app:app --port 8765 &               # sobe o AEB local

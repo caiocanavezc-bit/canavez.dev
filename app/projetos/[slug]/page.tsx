@@ -81,7 +81,7 @@ export default async function CasePage({
                 />
               </span>
               <span className="min-w-0">
-                <span className="block text-[14px] text-muted">
+                <span className="block text-[14px] text-muted group-hover:text-[#8B98A5]">
                   Próximo case
                 </span>
                 <span className="block text-lg font-semibold text-text">

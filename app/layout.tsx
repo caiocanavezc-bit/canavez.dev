@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { RevealObserver } from "@/components/reveal-observer";
 import { SkipLink } from "@/components/skip-link";
 import { perfil } from "@/content/perfil";
+import { revealScript } from "@/lib/reveal-script";
 import { siteUrl } from "@/lib/site";
 import { geistMono, geistSans } from "./fonts";
 import "./globals.css";
@@ -14,23 +14,20 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
-// Marca <html> com "js" antes da pintura: só então o CSS esconde o que vai ser revelado.
-const marcarJs = "document.documentElement.classList.add('js')";
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      // o script inline acrescenta a classe "js" antes da hidratação
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: marcarJs }} />
+        <script dangerouslySetInnerHTML={{ __html: revealScript }} />
       </head>
       <body className="min-h-dvh">
         <SkipLink />
         {children}
-        <RevealObserver />
       </body>
     </html>
   );

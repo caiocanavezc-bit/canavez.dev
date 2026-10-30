@@ -15,10 +15,6 @@ export function PersonJsonLd({ perfil }: { perfil: Perfil }) {
       addressRegion: "SP",
       addressCountry: "BR",
     },
-    alumniOf: {
-      "@type": "CollegeOrUniversity",
-      name: "Universidade de Ribeirão Preto (Unaerp)",
-    },
     sameAs: [perfil.contato.linkedin, perfil.contato.github].filter(Boolean),
   };
   return (

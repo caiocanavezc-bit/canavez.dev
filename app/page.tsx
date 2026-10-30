@@ -19,7 +19,10 @@ export default function Home() {
     <>
       <PersonJsonLd perfil={perfil} />
       <Dock variant="home" hasProjects={projetos.length > 0} />
-      <div className="mx-auto max-w-[1120px] px-4 pt-24 pb-24 lg:grid lg:grid-cols-[340px_minmax(0,680px)] lg:justify-center lg:gap-16">
+      <div
+        id="topo"
+        className="mx-auto max-w-[1120px] px-4 pt-24 pb-24 lg:grid lg:grid-cols-[340px_minmax(0,680px)] lg:justify-center lg:gap-16"
+      >
         <aside className="lg:sticky lg:top-24 lg:self-start">
           <ProfileCard perfil={perfil} />
         </aside>

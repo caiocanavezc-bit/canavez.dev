@@ -1,11 +1,15 @@
-import { readFile } from "node:fs/promises";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
 export const ogSize = { width: 1200, height: 630 };
 
+// Leitura síncrona no carregamento do módulo: sem I/O assíncrono no handler,
+// o Next pré-renderiza as imagens no build (com cacheComponents, readFile async as tornava dinâmicas).
 const fonte = (arquivo: string) =>
-  readFile(join(process.cwd(), "node_modules/geist/dist/fonts", arquivo));
+  readFileSync(join(process.cwd(), "node_modules/geist/dist/fonts", arquivo));
+const bold = fonte("geist-sans/Geist-Bold.ttf");
+const mono = fonte("geist-mono/GeistMono-Regular.ttf");
 
 /** Imagem de compartilhamento no visual do site: fundo preto, título branco, subtítulo cinza. */
 export async function ogImage({
@@ -15,10 +19,6 @@ export async function ogImage({
   titulo: string;
   subtitulo: string;
 }): Promise<ImageResponse> {
-  const [bold, mono] = await Promise.all([
-    fonte("geist-sans/Geist-Bold.ttf"),
-    fonte("geist-mono/GeistMono-Regular.ttf"),
-  ]);
   return new ImageResponse(
     <div
       style={{

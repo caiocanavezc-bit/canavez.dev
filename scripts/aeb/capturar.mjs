@@ -9,8 +9,8 @@ import sharp from "sharp";
 
 const BASE = process.env.AEB_URL ?? "http://localhost:8765";
 const SENHA_ADMIN = process.env.ADMIN_PASSWORD ?? "Demo-Portfolio-2026!";
-// Login do representante criado pelo seed_ficticio.py (CPF inventado 900000001 + dígitos verificadores)
-const GUIA = { login: "90000000175", senha: "Demo-Portfolio-2026!" };
+// Login do representante criado pelo seed_ficticio.py (CPF de exemplo público, ver o seed)
+const GUIA = { login: "52998224725", senha: "Demo-Portfolio-2026!" };
 const ADMIN = { login: "admin", senha: SENHA_ADMIN };
 const DESTINO = "public/projetos/aeb-transporte";
 const TMP = fs.mkdtempSync(path.join(os.tmpdir(), "aeb-prints-"));

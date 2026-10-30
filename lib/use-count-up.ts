@@ -42,6 +42,7 @@ export function useCountUp(
     return () => {
       obs.disconnect();
       cancelAnimationFrame(frame);
+      setValor(target);
     };
   }, [target, ref, durationMs]);
 

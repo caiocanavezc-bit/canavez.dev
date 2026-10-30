@@ -34,6 +34,8 @@ test("JSON-LD de pessoa na home", async ({ page }) => {
   );
   expect(json["@type"]).toBe("Person");
   expect(json.name).toBe("Caio Canavez");
+  // Caio ainda está cursando: não é ex-aluno (alumniOf)
+  expect(json.alumniOf).toBeUndefined();
   expect(json.sameAs).toEqual(
     expect.arrayContaining([
       "https://www.linkedin.com/in/caio-canavez-b1427b427",
