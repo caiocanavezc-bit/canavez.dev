@@ -24,4 +24,5 @@ test("cada serviço aponta para o case de exemplo", () => {
 test("contatos aprovados", () => {
   expect(perfil.contato.whatsapp).toBe("5516992647064");
   expect(perfil.contato.email).toBe("caiocanavezc@gmail.com");
+  expect(perfil.contato.instagram).toBe("https://www.instagram.com/canavezz/");
 });

@@ -15,7 +15,11 @@ export function PersonJsonLd({ perfil }: { perfil: Perfil }) {
       addressRegion: "SP",
       addressCountry: "BR",
     },
-    sameAs: [perfil.contato.linkedin, perfil.contato.github].filter(Boolean),
+    sameAs: [
+      perfil.contato.linkedin,
+      perfil.contato.github,
+      perfil.contato.instagram,
+    ].filter(Boolean),
   };
   return (
     <script

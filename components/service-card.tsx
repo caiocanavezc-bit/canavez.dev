@@ -17,6 +17,7 @@ export function ServiceCard({
   return (
     <article
       data-reveal
+      data-brilho
       style={{ "--reveal-delay": `${atrasoMs}ms` } as CSSProperties}
       className="flex flex-col rounded-2xl border border-border p-6"
     >

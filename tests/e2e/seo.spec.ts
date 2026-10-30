@@ -40,6 +40,7 @@ test("JSON-LD de pessoa na home", async ({ page }) => {
     expect.arrayContaining([
       "https://www.linkedin.com/in/caio-canavez-b1427b427",
       "https://github.com/caiocanavezc-bit",
+      "https://www.instagram.com/canavezz/",
     ]),
   );
 });

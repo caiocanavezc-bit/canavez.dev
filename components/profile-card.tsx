@@ -2,7 +2,7 @@ import { Briefcase, GraduationCap, MapPin } from "lucide-react";
 import Image from "next/image";
 import type { Perfil } from "@/content/perfil";
 import { whatsappUrl } from "@/lib/links";
-import { GithubIcon, LinkedinIcon } from "./icons";
+import { GithubIcon, InstagramIcon, LinkedinIcon } from "./icons";
 
 const ICONES_AGORA = { briefcase: Briefcase, "graduation-cap": GraduationCap };
 const iconeRede =
@@ -16,7 +16,11 @@ export function ProfileCard({ perfil }: { perfil: Perfil }) {
       data-testid="profile-card"
       className="overflow-hidden rounded-2xl border border-border bg-bg"
     >
-      <div aria-hidden="true" className="h-24 bg-[#333639]" />
+      <div
+        aria-hidden="true"
+        data-testid="capa-perfil"
+        className="h-24 bg-[#202327] bg-[url(/perfil/capa.svg)] bg-cover bg-center"
+      />
       <div className="px-5 pb-5">
         <div className="-mt-12 flex items-end justify-between gap-3">
           {perfil.avatar ? (
@@ -80,7 +84,7 @@ export function ProfileCard({ perfil }: { perfil: Perfil }) {
           })}
         </ul>
 
-        {(contato.github || contato.linkedin) && (
+        {(contato.github || contato.linkedin || contato.instagram) && (
           <div className="mt-4 flex gap-2">
             {contato.github && (
               <a
@@ -102,6 +106,17 @@ export function ProfileCard({ perfil }: { perfil: Perfil }) {
                 className={iconeRede}
               >
                 <LinkedinIcon className="size-[18px]" />
+              </a>
+            )}
+            {contato.instagram && (
+              <a
+                href={contato.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram de Caio Canavez"
+                className={iconeRede}
+              >
+                <InstagramIcon className="size-[18px]" />
               </a>
             )}
           </div>

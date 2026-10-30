@@ -5,6 +5,7 @@ import { describe, expect, test } from "vitest";
 
 const arquivos = [
   "perfil/avatar.webp",
+  "perfil/capa.svg",
   ...["capa", "thumb", "chamada", "rotas", "celular", "pdf"].map(
     (n) => `projetos/aeb-transporte/${n}.webp`,
   ),

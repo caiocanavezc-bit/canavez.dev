@@ -9,6 +9,8 @@ export type Perfil = {
   bio: string;
   cidade: string;
   avatar: { src: string; alt: string } | null;
+  /** Texto do selo no topo do hero; null esconde o selo (ex.: sem agenda). */
+  disponibilidade: string | null;
   agora: AgoraItem[];
   heroTitulo: [string, string];
   heroParagrafo: string;
@@ -19,6 +21,7 @@ export type Perfil = {
     email?: string;
     linkedin?: string;
     github?: string;
+    instagram?: string;
     mensagemWhatsapp: string;
     assuntoEmail: string;
   };
@@ -30,6 +33,7 @@ export const perfil: Perfil = {
   bio: "Desenvolvo sistemas web para problemas reais, da prefeitura ao ônibus da faculdade.",
   cidade: "Batatais, SP",
   avatar: { src: "/perfil/avatar.webp", alt: "Caio Canavez" },
+  disponibilidade: "Disponível para projetos",
   agora: [
     { icon: "briefcase", texto: "Estagiário de TI · Prefeitura de Batatais" },
     { icon: "graduation-cap", texto: "Engenharia de Computação · Unaerp · 2025–2030" },
@@ -65,6 +69,7 @@ export const perfil: Perfil = {
     email: "caiocanavezc@gmail.com",
     linkedin: "https://www.linkedin.com/in/caio-canavez-b1427b427",
     github: "https://github.com/caiocanavezc-bit",
+    instagram: "https://www.instagram.com/canavezz/",
     mensagemWhatsapp: "Olá, Caio! Vi seu portfólio e quero conversar sobre um projeto.",
     assuntoEmail: "Contato pelo portfólio",
   },

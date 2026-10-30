@@ -21,6 +21,7 @@ export function ProjectList({ projects }: { projects: ProjectMeta[] }) {
         >
           <Link
             href={`/projetos/${p.slug}`}
+            data-brilho
             className="group -mx-3 flex items-center gap-4 rounded-xl px-3 py-5 hover:bg-surface motion-safe:transition-colors motion-safe:duration-200"
           >
             <ViewTransition name={`capa-${p.slug}`} share="capa" default="none">
