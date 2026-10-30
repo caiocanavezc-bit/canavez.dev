@@ -67,3 +67,21 @@ test("revelação usa subida com desfoque leve, como no site da BC", async ({
   expect(estilo.filter).toContain("blur(3px)");
   expect(estilo.transform).toContain("14");
 });
+
+test.describe("com 'reduzir movimento' ligado no sistema", () => {
+  test.use({ reducedMotion: "reduce" });
+
+  // Igual ao site da BC: o clique no menu desce suave mesmo com a preferência ligada
+  // (comum no Windows com "Efeitos de animação" desligado).
+  test("clicar no dock ainda desce suavemente", async ({ page }) => {
+    await page.goto("/");
+    await dock(page).getByRole("link", { name: "Projetos" }).click();
+    await page.waitForTimeout(350);
+    const noMeio = await page.evaluate(() => window.scrollY);
+    const destino = await page
+      .locator("#projetos")
+      .evaluate((el) => el.getBoundingClientRect().top + window.scrollY);
+    expect(noMeio).toBeGreaterThan(0);
+    expect(noMeio).toBeLessThan(destino - 120);
+  });
+});
