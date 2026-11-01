@@ -128,7 +128,7 @@ export function Sidebar({
             width={56}
             height={56}
             priority
-            quality={90}
+            quality={100}
             className="cv-avatar"
           />
         )}
