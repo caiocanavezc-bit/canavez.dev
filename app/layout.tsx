@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { SkipLink } from "@/components/skip-link";
 import { perfil } from "@/content/perfil";
 import { revealScript } from "@/lib/reveal-script";
 import { siteUrl } from "@/lib/site";
-import { geistMono, geistSans } from "./fonts";
+import { themeScript } from "@/lib/theme-script";
+import { mono, sans, serif } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,19 +15,26 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f4f5f2" },
+    { media: "(prefers-color-scheme: dark)", color: "#131514" },
+  ],
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      // o script inline acrescenta a classe "js" antes da hidratação
+      className={`${serif.variable} ${sans.variable} ${mono.variable}`}
+      // os scripts inline acrescentam a classe "js" e o data-theme antes da hidratação
       suppressHydrationWarning
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script dangerouslySetInnerHTML={{ __html: revealScript }} />
       </head>
       <body className="min-h-dvh">
-        <div aria-hidden="true" data-testid="grao" className="grao" />
         <SkipLink />
         {children}
       </body>

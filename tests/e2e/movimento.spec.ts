@@ -8,10 +8,9 @@ test.describe("sem JavaScript", () => {
     for (const texto of [
       "Sistemas web sob medida",
       "AEB Transporte",
-      "Vamos",
+      "Estagiário de TI",
     ]) {
-      const el = page.getByText(texto).first();
-      await expect(el).toBeVisible();
+      await expect(page.getByText(texto).first()).toBeVisible();
     }
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     const opacidades = await page
@@ -25,11 +24,8 @@ test.describe("sem JavaScript", () => {
 test.describe("movimento reduzido", () => {
   test.use({ reducedMotion: "reduce" });
 
-  test("métrica com valor final e nada escondido", async ({ page }) => {
+  test("nada fica escondido esperando animação", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByText("+10", { exact: true })).toBeVisible({
-      timeout: 300,
-    });
     const opacidades = await page
       .locator("[data-reveal]")
       .evaluateAll((els) => els.map((e) => getComputedStyle(e).opacity));
@@ -40,16 +36,14 @@ test.describe("movimento reduzido", () => {
 test("seções reveladas ao rolar", async ({ page }) => {
   await page.goto("/");
   await page.locator("#contato").scrollIntoViewIfNeeded();
-  const reveal = page
-    .locator("#contato[data-reveal], #contato [data-reveal]")
-    .first();
-  await expect(reveal).toHaveAttribute("data-revealed", "");
+  await expect(page.locator("#contato [data-reveal]").first()).toHaveAttribute(
+    "data-revealed",
+    "",
+  );
 });
 
-test("hero e cartão não ficam escondidos esperando animação", async ({
-  page,
-}) => {
+test("topo e barra lateral não esperam animação", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator("#inicio")).not.toHaveAttribute("data-reveal");
-  await expect(page.getByTestId("profile-card")).toBeVisible();
+  await expect(page.locator("#sobre [data-reveal]")).toHaveCount(0);
+  await expect(page.getByTestId("barra-lateral")).toBeVisible();
 });

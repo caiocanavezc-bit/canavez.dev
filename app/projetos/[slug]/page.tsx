@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ViewTransition } from "react";
-import { CaseGallery } from "@/components/case-gallery";
-import { CaseHeader } from "@/components/case-header";
-import { Dock } from "@/components/dock";
-import { getAdjacentProject, getProject, getProjects } from "@/lib/projects";
+import { Shell } from "@/components/shell";
+import {
+  getAdjacentProject,
+  getProject,
+  getProjects,
+  TIPO_PROJETO,
+} from "@/lib/projects";
 
 export function generateStaticParams() {
   return getProjects().map((p) => ({ slug: p.slug }));
@@ -35,63 +37,91 @@ export default async function CasePage({
   const proximo = getAdjacentProject(slug);
 
   return (
-    <>
-      <Dock variant="case" />
-      <main
-        id="conteudo"
-        tabIndex={-1}
-        className="@container mx-auto max-w-[760px] px-4 pt-24 pb-24 outline-none"
-      >
-        <CaseHeader meta={meta} />
+    <Shell variant="pagina" atual="projetos">
+      <article className="flex flex-col gap-10">
+        <header className="cv-post-head">
+          <Link href="/#projetos" className="cv-back">
+            ← todos os projetos
+          </Link>
+          <span className="cv-label">
+            {TIPO_PROJETO[meta.kind]} · {meta.year}
+          </span>
+          <h1 className="cv-display">{meta.title}</h1>
+          <p className="cv-subtitle">{meta.subtitle}</p>
+          <p className="cv-meta m-0">
+            {meta.role.toLowerCase()}
+            <span aria-hidden="true"> · </span>
+            <span className="sr-only">. Tecnologias: </span>
+            {meta.stack.join(" · ").toLowerCase()}
+          </p>
+          {meta.liveUrl && (
+            <a
+              href={meta.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cv-pill self-start"
+            >
+              Ver online
+              <span className="cv-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          )}
+        </header>
 
-        <ViewTransition name={`capa-${meta.slug}`} share="capa" default="none">
+        <figure className="cv-figure">
           <Image
             src={meta.cover}
             alt={`Tela principal do projeto ${meta.title}`}
             width={1600}
             height={1000}
             priority
-            sizes="(min-width: 800px) 760px, 100vw"
-            className="mt-10 h-auto w-full rounded-2xl border border-border"
+            sizes="(min-width: 960px) 600px, 100vw"
           />
-        </ViewTransition>
+        </figure>
 
-        <article className="mt-6">
+        <div className="cv-body">
           <Content />
-        </article>
+        </div>
 
-        <CaseGallery images={meta.gallery} />
+        {meta.gallery.length > 0 && (
+          <section aria-labelledby="titulo-telas" className="flex flex-col gap-10">
+            <div className="cv-section-head" style={{ marginBottom: 0 }}>
+              <h2 id="titulo-telas">Telas</h2>
+              <span className="cv-aside">{meta.gallery.length} capturas</span>
+            </div>
+            {meta.gallery.map((img) => {
+              const vertical = img.height > img.width;
+              return (
+                <figure
+                  key={img.src}
+                  className="cv-figure"
+                  data-vertical={vertical ? "" : undefined}
+                  data-reveal
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    width={img.width}
+                    height={img.height}
+                    sizes={vertical ? "340px" : "(min-width: 960px) 600px, 100vw"}
+                  />
+                  <figcaption aria-hidden="true">{img.alt.toLowerCase()}</figcaption>
+                </figure>
+              );
+            })}
+          </section>
+        )}
 
         {proximo.slug !== meta.slug && (
-          <nav
-            aria-label="Outros projetos"
-            className="mt-20 border-t border-border pt-10"
-          >
-            <Link
-              href={`/projetos/${proximo.slug}`}
-              className="group -mx-3 flex items-center gap-4 rounded-xl px-3 py-4 hover:bg-surface motion-safe:transition-colors"
-            >
-              <span className="relative aspect-[16/10] w-28 shrink-0 overflow-hidden rounded-lg border border-border">
-                <Image
-                  src={proximo.thumb}
-                  alt=""
-                  fill
-                  sizes="112px"
-                  className="object-cover object-top"
-                />
-              </span>
-              <span className="min-w-0">
-                <span className="block text-[14px] text-muted group-hover:text-[#8B98A5]">
-                  Próximo case
-                </span>
-                <span className="block text-lg font-semibold text-text">
-                  {proximo.title}
-                </span>
-              </span>
+          <nav aria-label="Outros projetos">
+            <Link href={`/projetos/${proximo.slug}`} className="cv-next">
+              <small>Próximo case →</small>
+              {proximo.title}
             </Link>
           </nav>
         )}
-      </main>
-    </>
+      </article>
+    </Shell>
   );
 }

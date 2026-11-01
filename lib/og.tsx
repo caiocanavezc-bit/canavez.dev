@@ -11,7 +11,7 @@ const fonte = (arquivo: string) =>
 const bold = fonte("geist-sans/Geist-Bold.ttf");
 const mono = fonte("geist-mono/GeistMono-Regular.ttf");
 
-/** Imagem de compartilhamento no visual do site: fundo preto, título branco, subtítulo cinza. */
+/** Imagem de compartilhamento no visual do site: fundo claro, título em tinta escura, assinatura na cor de destaque. */
 export async function ogImage({
   titulo,
   subtitulo,
@@ -27,7 +27,7 @@ export async function ogImage({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        background: "#000000",
+        background: "#f4f5f2",
         padding: "72px 80px",
       }}
     >
@@ -36,7 +36,7 @@ export async function ogImage({
           style={{
             fontFamily: "Geist",
             fontSize: 72,
-            color: "#E7E9EA",
+            color: "#1d211f",
             letterSpacing: "-0.03em",
             lineHeight: 1.05,
           }}
@@ -47,7 +47,7 @@ export async function ogImage({
           style={{
             fontFamily: "Geist",
             fontSize: 32,
-            color: "#71767B",
+            color: "#474d49",
             marginTop: 24,
             lineHeight: 1.3,
           }}
@@ -55,7 +55,7 @@ export async function ogImage({
           {subtitulo}
         </div>
       </div>
-      <div style={{ fontFamily: "Geist Mono", fontSize: 24, color: "#71767B" }}>
+      <div style={{ fontFamily: "Geist Mono", fontSize: 24, color: "#2f6a5e" }}>
         canavez
       </div>
     </div>,

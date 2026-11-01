@@ -1,31 +1,36 @@
 import Link from "next/link";
-import { SectionTitle } from "@/components/section-title";
+import { Shell } from "@/components/shell";
 
 export default function NotFound() {
   return (
-    <main
-      id="conteudo"
-      tabIndex={-1}
-      className="@container mx-auto max-w-[680px] px-4 pt-32 pb-24 outline-none"
-    >
-      <SectionTitle as="h1" linhas={["Página não", "encontrada"]} />
-      <p className="mt-6 max-w-[62ch] text-[17px] leading-[1.6] text-muted">
-        O endereço pode ter mudado ou estar digitado errado.
-      </p>
-      <div className="mt-8 flex flex-wrap gap-3">
-        <Link
-          href="/"
-          className="inline-flex min-h-11 items-center rounded-full bg-button px-5 text-[15px] font-semibold text-button-text hover:bg-white"
-        >
-          Ir para o início
-        </Link>
-        <Link
-          href="/#projetos"
-          className="inline-flex min-h-11 items-center rounded-full border border-border px-5 text-[15px] font-semibold text-text hover:bg-surface"
-        >
-          Ver projetos
-        </Link>
-      </div>
-    </main>
+    <Shell variant="pagina">
+      <section className="flex flex-col gap-6">
+        <span className="cv-label">erro 404</span>
+        <h1 className="cv-display">Página não encontrada</h1>
+        <div className="cv-prose">
+          <p>O endereço pode ter mudado ou estar digitado errado.</p>
+        </div>
+        <ul className="cv-links">
+          <li>
+            <Link className="cv-link" href="/">
+              <span className="cv-link-title">Ir para o início</span>
+              <span className="cv-arrow" aria-hidden="true">
+                →
+              </span>
+              <span className="cv-link-desc">sobre, experiência e contato</span>
+            </Link>
+          </li>
+          <li>
+            <Link className="cv-link" href="/#projetos">
+              <span className="cv-link-title">Ver projetos</span>
+              <span className="cv-arrow" aria-hidden="true">
+                →
+              </span>
+              <span className="cv-link-desc">os cases com telas e detalhes</span>
+            </Link>
+          </li>
+        </ul>
+      </section>
+    </Shell>
   );
 }

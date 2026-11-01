@@ -1,17 +1,28 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Hanken_Grotesk, IBM_Plex_Mono, Spectral } from "next/font/google";
 
-// next/font/google baixa a Geist no build, recorta só o subconjunto latino (~1/3 do arquivo
-// variável completo) e serve junto com o site: nenhuma requisição ao Google em runtime.
-export const geistSans = Geist({
-  variable: "--font-geist-sans",
+// next/font/google baixa as fontes no build e serve junto com o site: nenhuma requisição
+// ao Google em runtime. Trio editorial: serifa leve nos títulos, grotesca no texto,
+// mono nos rótulos e datas.
+export const serif = Spectral({
+  variable: "--ff-serif",
   subsets: ["latin"],
+  weight: ["300", "400"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-// A mono só aparece em números e chips pequenos: sem preload, fica fora do caminho crítico.
-export const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+export const sans = Hanken_Grotesk({
+  variable: "--ff-sans",
   subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+});
+
+// A mono só aparece em datas e rótulos pequenos: sem preload, fica fora do caminho crítico.
+export const mono = IBM_Plex_Mono({
+  variable: "--ff-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
   preload: false,
 });
