@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SkipLink } from "@/components/skip-link";
 import { perfil } from "@/content/perfil";
 import { revealScript } from "@/lib/reveal-script";
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-dvh">
         <SkipLink />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
