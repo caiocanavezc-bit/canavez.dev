@@ -3,9 +3,9 @@
 import sharp from "sharp";
 
 const ORIGEM = "insumos/foto-selfie-3.png"; // 768×1024, selfie de frente (recebida em 2026-11-01)
-// Quadrado do topo do cabelo ao pescoço, centrado no rosto: a máscara redonda do site
-// esconde os cantos. 660px da origem viram 512px (só redução, nunca ampliação).
-const RECORTE = { left: 42, top: 140, width: 660, height: 660 };
+// Maior quadrado possível (largura inteira da foto, sem zoom), com o rosto no centro: a máscara redonda do site
+// esconde os cantos. 768px da origem viram 512px (só redução, nunca ampliação).
+const RECORTE = { left: 0, top: 100, width: 768, height: 768 };
 
 await sharp(ORIGEM)
   .extract(RECORTE)
