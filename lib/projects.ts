@@ -45,3 +45,9 @@ export function getAdjacentProject(slug: string): ProjectMeta {
   const i = publicados.findIndex((m) => m.slug === slug);
   return publicados[(i + 1) % publicados.length];
 }
+
+/** Rótulo do tipo de projeto, em minúsculas como os demais rótulos do site. */
+export const TIPO_PROJETO: Record<ProjectMeta["kind"], string> = {
+  sistema: "sistema web",
+  site: "site institucional",
+};

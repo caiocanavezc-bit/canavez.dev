@@ -1,6 +1,6 @@
 # canavez.dev
 
-Portfólio pessoal de Caio Canavez, desenvolvedor full-stack. Site estático em Next.js com estética inspirada no modo escuro do X.
+Portfólio pessoal de Caio Canavez, desenvolvedor full-stack. Site estático em Next.js com estética editorial: barra lateral fixa, títulos em serifa leve (Spectral), texto em Hanken Grotesk e rótulos em IBM Plex Mono, com tema claro e escuro.
 
 ## Comandos
 

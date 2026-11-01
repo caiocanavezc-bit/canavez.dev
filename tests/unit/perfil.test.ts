@@ -6,12 +6,20 @@ test("toda métrica informa a fonte", () => {
     expect(m.fonte.trim().length).toBeGreaterThan(0);
 });
 
-test("bio cabe no cartão", () => {
+test("bio cabe na descrição de busca", () => {
   expect(perfil.bio.length).toBeLessThanOrEqual(120);
 });
 
-test("título do hero em duas linhas", () => {
-  expect(perfil.heroTitulo).toEqual(["Desenvolvedor", "full-stack"]);
+test("papel na barra lateral", () => {
+  expect(perfil.papel).toBe("desenvolvedor full-stack");
+});
+
+test("linha do tempo começa pelo trabalho atual", () => {
+  expect(perfil.experiencia[0]).toMatchObject({
+    papel: "Estagiário de TI",
+    org: "Prefeitura Municipal de Batatais",
+    status: "atual",
+  });
 });
 
 test("cada serviço aponta para o case de exemplo", () => {

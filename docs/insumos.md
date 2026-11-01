@@ -11,6 +11,7 @@ Dados fornecidos pelo Caio para o conteúdo do site. Os arquivos brutos (fotos, 
 | Métrica | "+10 sistemas entregues" (fonte: informado pelo Caio) | 2026-10-29 |
 | Métrica | "1 ano de TI no setor público" (fonte: LinkedIn, estágio desde out/2025) | 2026-10-29 |
 | Foto | `insumos/foto-espelho.png` (selfie no espelho, rosto coberto pelo celular) | 2026-10-29 |
+| Foto (atual) | `insumos/foto-espelho-2.png` (selfie no espelho com o rosto à mostra; recorte quadrado no rosto) | 2026-10-31 |
 | LinkedIn (PDF) | estagiário de TI na Prefeitura Municipal de Batatais desde out/2025; Engenharia de Computação na Unaerp (ago/2025 a jul/2030) | 2026-10-29 |
 
 ## Textos aprovados (2026-10-29)
@@ -29,7 +30,7 @@ Dados fornecidos pelo Caio para o conteúdo do site. Os arquivos brutos (fotos, 
 
 ## Decisões do Caio (2026-10-29)
 
-- **Foto:** usar por enquanto a selfie do espelho, cortada do peito para cima e escurecida para o fundo preto. Trocar quando chegar uma foto com o rosto à mostra.
+- **Foto:** a selfie antiga (rosto coberto) foi trocada em 2026-10-31 por uma selfie no espelho com o rosto à mostra, recortada no rosto.
 - **AEB Transporte:** no ar desde outubro de 2026. Claude gera os prints rodando o sistema localmente com dados fictícios. Conteúdo do case vem do README do repositório `aeb-transporte`.
 - **BC Consultoria:** autorização do escritório confirmada pelo Caio, então o case sai com `published: true`. Conteúdo vem do repositório `bc_consultoria`. Não há URL pública conhecida: houve deploy no GitHub Pages em 2026-10-13, mas `caiocanavezc-bit.github.io/bc_consultoria/` responde 404, então o case sai sem `liveUrl` até o Caio informar um endereço.
 

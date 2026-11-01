@@ -1,33 +1,39 @@
-import { expect, type Page, test } from "@playwright/test";
-
-const semRolagemHorizontal = (page: Page) =>
-  page.evaluate(
-    () =>
-      document.documentElement.scrollWidth <=
-      document.documentElement.clientWidth,
-  );
+import { expect, test } from "@playwright/test";
+import { semRolagemHorizontal } from "./helpers";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
 });
 
-test("hero com título em duas linhas", async ({ page }) => {
-  const h1 = page.getByRole("heading", { level: 1 });
-  await expect(h1).toContainText("Desenvolvedor");
-  await expect(h1).toContainText("full-stack");
+test("título principal e texto de apresentação", async ({ page }) => {
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("sobre mim");
+  await expect(page.locator("#sobre")).toContainText(
+    "estagiário de TI na Prefeitura de Batatais",
+  );
 });
 
-test("cartão de perfil com nome e ocupação atual", async ({ page }) => {
-  await expect(page.getByText("Caio Canavez").first()).toBeVisible();
-  await expect(
-    page.getByText("Estagiário de TI · Prefeitura de Batatais"),
-  ).toBeVisible();
+test("barra lateral com nome e papel", async ({ page }, info) => {
+  const barra = page.getByTestId("barra-lateral");
+  await expect(barra.getByText("Caio Canavez")).toBeVisible();
+  // no celular o papel some para a barra caber no topo
+  if (info.project.name === "desktop")
+    await expect(barra.getByText("desenvolvedor full-stack")).toBeVisible();
 });
 
-test("seção de serviços", async ({ page }) => {
+test("linha do tempo com o trabalho atual", async ({ page }) => {
+  const atual = page.locator("#experiencia li[data-status=atual]").first();
+  await expect(atual).toContainText("Estagiário de TI");
+  await expect(atual).toContainText("Prefeitura Municipal de Batatais");
+});
+
+test("seção de serviços aponta para os cases", async ({ page }) => {
   const servicos = page.locator("#servicos");
-  await expect(servicos).toContainText("Sistemas web sob medida");
-  await expect(servicos).toContainText("Sites institucionais");
+  await expect(
+    servicos.getByRole("link", { name: /Sistemas web sob medida/ }),
+  ).toHaveAttribute("href", "/projetos/aeb-transporte");
+  await expect(
+    servicos.getByRole("link", { name: /Sites institucionais/ }),
+  ).toHaveAttribute("href", "/projetos/bc-consultoria");
 });
 
 test("links de contato", async ({ page }) => {
@@ -45,30 +51,14 @@ test("links de contato", async ({ page }) => {
   ).toHaveAttribute("href", "https://www.instagram.com/canavezz/");
 });
 
-test("no computador os botões de contato cabem numa linha", async ({
-  page,
-}, info) => {
-  test.skip(info.project.name === "mobile", "no celular eles quebram linha");
-  const topos = await page
-    .locator("#contato ul > li")
-    .evaluateAll((lis) => lis.map((li) => li.getBoundingClientRect().top));
-  expect(new Set(topos).size).toBe(1);
-});
-
-test("cartão de perfil tem o Instagram", async ({ page }) => {
-  const link = page
-    .getByTestId("profile-card")
-    .getByRole("link", { name: "Instagram de Caio Canavez" });
-  await expect(link).toHaveAttribute(
-    "href",
-    "https://www.instagram.com/canavezz/",
-  );
-  await expect(link).toHaveAttribute("target", "_blank");
+test("pílula de disponibilidade leva ao WhatsApp", async ({ page }) => {
+  const selo = page.getByTestId("selo-disponivel");
+  await expect(selo).toContainText("disponível para projetos");
+  await expect(selo).toBeInViewport();
+  await expect(selo).toHaveAttribute("href", /^https:\/\/wa\.me\//);
 });
 
 test("métricas", async ({ page }) => {
-  // No celular as métricas ficam abaixo da dobra e só contam até o valor final ao entrar na tela.
-  await page.getByText("sistemas entregues").scrollIntoViewIfNeeded();
   await expect(page.getByText("+10", { exact: true })).toBeVisible();
   await expect(page.getByText("1 ano", { exact: true })).toBeVisible();
 });
@@ -91,8 +81,7 @@ for (const viewport of [
   });
 }
 
-test("cartão fica fixo ao rolar no desktop", async ({ page }, info) => {
-  test.skip(info.project.name !== "desktop", "sticky só no desktop");
+test("barra lateral fica visível ao rolar", async ({ page }) => {
   await page.evaluate(() => window.scrollTo(0, 1500));
-  await expect(page.getByTestId("profile-card")).toBeInViewport();
+  await expect(page.getByTestId("barra-lateral")).toBeInViewport();
 });
