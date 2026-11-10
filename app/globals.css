@@ -1,22 +1,9 @@
 @import "tailwindcss";
 
-/* Estética editorial: fundo off-white esverdeado, tinta quase preta, um único acento.
-   Claro por padrão, escuro pelo sistema ou pelo botão da barra lateral (data-theme no <html>). */
+/* Estética editorial: fundo quase preto esverdeado, tinta clara, um único acento.
+   Escuro sempre, qualquer que seja o tema do sistema; o claro só vale se escolhido
+   no botão da barra lateral (data-theme no <html>). */
 :root,
-[data-theme="light"] {
-  --bg: #f4f5f2;
-  --surface: #fafbf9;
-  --surface-sunk: #eceee9;
-  --line: #dfe2dc;
-  --line-strong: #c9cdc6;
-  --ink: #1d211f;
-  --ink-soft: #474d49;
-  --ink-faint: #656b66;
-  --accent: #2f6a5e;
-  --accent-soft: #e1ebe7;
-  --ok: #23774a;
-  color-scheme: light;
-}
 [data-theme="dark"] {
   --bg: #131514;
   --surface: #181b1a;
@@ -31,21 +18,19 @@
   --ok: #79c993;
   color-scheme: dark;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    --bg: #131514;
-    --surface: #181b1a;
-    --surface-sunk: #1f2321;
-    --line: #2a2f2c;
-    --line-strong: #3a403c;
-    --ink: #e6e8e3;
-    --ink-soft: #b3b8b2;
-    --ink-faint: #8a908b;
-    --accent: #8fc6b8;
-    --accent-soft: #1f322d;
-    --ok: #79c993;
-    color-scheme: dark;
-  }
+[data-theme="light"] {
+  --bg: #f4f5f2;
+  --surface: #fafbf9;
+  --surface-sunk: #eceee9;
+  --line: #dfe2dc;
+  --line-strong: #c9cdc6;
+  --ink: #1d211f;
+  --ink-soft: #474d49;
+  --ink-faint: #656b66;
+  --accent: #2f6a5e;
+  --accent-soft: #e1ebe7;
+  --ok: #23774a;
+  color-scheme: light;
 }
 
 :root {
@@ -745,12 +730,30 @@ section[id] {
     background: var(--bg);
     border-bottom: 1px solid var(--line);
   }
-  .cv-avatar,
-  .cv-role {
-    display: none;
+  /* Foto ao lado do nome e do papel, como no computador, cabendo na barra de 57px. */
+  .cv-profile {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 2px 12px;
+    align-items: center;
+    min-width: 0;
+  }
+  .cv-avatar {
+    grid-row: 1 / span 2;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0;
   }
   .cv-name {
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .cv-role {
+    font-size: 12px;
+    line-height: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .cv-menu {
     display: block;

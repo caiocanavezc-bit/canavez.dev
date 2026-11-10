@@ -5,28 +5,19 @@ import { CHAVE_TEMA } from "@/lib/theme-script";
 
 type Tema = "light" | "dark";
 
-const escuroNoSistema = () =>
-  window.matchMedia("(prefers-color-scheme: dark)").matches;
-
+// Sem escolha salva o site é escuro, qualquer que seja o tema do sistema.
 function temaAtual(): Tema {
-  const t = document.documentElement.dataset.theme;
-  if (t === "light" || t === "dark") return t;
-  return escuroNoSistema() ? "dark" : "light";
+  return document.documentElement.dataset.theme === "light" ? "light" : "dark";
 }
 
-// Acompanha o atributo data-theme do <html> e a preferência do sistema.
+// Acompanha o atributo data-theme do <html>.
 function assinar(aviso: () => void) {
   const obs = new MutationObserver(aviso);
   obs.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["data-theme"],
   });
-  const mq = window.matchMedia("(prefers-color-scheme: dark)");
-  mq.addEventListener("change", aviso);
-  return () => {
-    obs.disconnect();
-    mq.removeEventListener("change", aviso);
-  };
+  return () => obs.disconnect();
 }
 
 export function ThemeToggle() {
