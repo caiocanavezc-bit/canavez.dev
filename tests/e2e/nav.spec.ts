@@ -79,3 +79,10 @@ test.describe("no celular", () => {
     await expect(page).toHaveURL(/#servicos$/);
   });
 });
+
+test("foto de perfil aparece na barra, também no celular", async ({ page }) => {
+  await page.goto("/");
+  const foto = page.getByTestId("barra-lateral").locator(".cv-avatar");
+  await expect(foto).toBeVisible();
+  await expect(foto).toBeInViewport();
+});
